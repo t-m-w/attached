@@ -1,0 +1,896 @@
+==========
+IPv4 Rules
+==========
+
+Chain INPUT (policy ACCEPT 6944 packets, 2028K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+15629 4516K bw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+15629 4516K fw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 oem_fwd    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 fw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 bw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 natctrl_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain OUTPUT (policy ACCEPT 7628 packets, 684K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+19016 1974K afwall     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+18795 2073K oem_out    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+18795 2073K fw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+18795 2073K bw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+18795 2073K st_filter_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 afwall-vpn  all  --  *      tun+    0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-vpn  all  --  *      ppp+    0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-vpn  all  --  *      tap+    0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-vpn  all  --  *      *       0.0.0.0/0            0.0.0.0/0           [goto]  mark match 0x3c/0xfffc
+    0     0 afwall-vpn  all  --  *      *       0.0.0.0/0            0.0.0.0/0           [goto]  mark match 0x40/0xfff8
+    0     0 afwall-wifi  all  --  *      eth+    0.0.0.0/0            0.0.0.0/0           
+11560 1216K afwall-wifi  all  --  *      wlan+   0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-wifi  all  --  *      tiwlan+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-wifi  all  --  *      ra+     0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-wifi  all  --  *      bnep+   0.0.0.0/0            0.0.0.0/0           
+ 4726  560K afwall-3g  all  --  *      rmnet+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      pdp+    0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      uwbr+   0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      wimax+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      vsnet+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      rmnet_sdio+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      ccmni+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      qmi+    0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      svnet0+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      wwan+   0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      cdma_rmnet+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      usb+    0.0.0.0/0            0.0.0.0/0           
+ 4256  531K afwall-3g  all  --  *      rmnet_usb+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      clat4+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      cc2mni+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      bond1+  0.0.0.0/0            0.0.0.0/0           
+    0     0 afwall-3g  all  --  *      rmnet_smux+  0.0.0.0/0            0.0.0.0/0           
+Chain afwall-3g (17 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 8982 1091K afwall-3g-postcustom  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-3g-fork (2 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   16  1212 afwall-3g-home  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-3g-home (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 2000
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10001
+ 1394  267K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10009
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10012
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10022
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10032
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10060
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10099
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10161
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10164
+ 2624  444K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10165
+ 1052 76208 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10205
+  248 17968 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10206
+   10   734 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10207
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10211
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10222
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10223
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10224
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10226
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10228
+ 2202  196K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10240
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10255
+  384 24414 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53 owner UID match 0
+  470 28200 afwall-reject  all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 0-999999999
+Chain afwall-3g-postcustom (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   16  1212 afwall-3g-fork  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-3g-roam (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53 owner UID match 0
+    0     0 afwall-reject  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-3g-tether (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 afwall-3g-fork  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-reject (5 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 1045 63190 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            limit: avg 1000/min burst 5 LOG flags 8 level 4 prefix "{AFL}"
+ 1399 84720 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+Chain afwall-vpn (5 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 2000
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10001
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10009
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10012
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10022
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10032
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10059
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10060
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10099
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10161
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10164
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10165
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10191
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10205
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10206
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10207
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10211
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10218
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10222
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10223
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10224
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10226
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10228
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10240
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10241
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10254
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10255
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10257
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53 owner UID match 0
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:123 owner UID match 1000
+    0     0 afwall-reject  all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 0-999999999
+Chain afwall-wifi (5 references)
+ pkts bytes target     prot opt in     out     source               destination         
+11560 1216K afwall-wifi-postcustom  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-wifi-fork (2 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 1978  178K afwall-wifi-lan  all  --  *      *       0.0.0.0/0            x.x.12.x/24       
+ 5227  478K afwall-wifi-wan  all  --  *      *       0.0.0.0/0           !x.x.12.x/24       
+Chain afwall-wifi-lan (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+  316 21038 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 2000
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10001
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10009
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10012
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10022
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10032
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10059
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10060
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10099
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10161
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10164
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10165
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10191
+  838 54265 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10205
+  209 36435 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10206
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10207
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10211
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10218
+  394 31113 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10222
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10223
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10224
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10226
+  305 41071 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10228
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10240
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10241
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10254
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10255
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10257
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53 owner UID match 0
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:123 owner UID match 1000
+    0     0 afwall-reject  all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 0-999999999
+Chain afwall-wifi-postcustom (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 1014
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 1010
+ 7205  656K afwall-wifi-fork  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-wifi-tether (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 afwall-wifi-fork  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain afwall-wifi-wan (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 2000
+   26  3342 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10001
+ 2995  240K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10009
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10012
+    1    52 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10022
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10032
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10059
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10060
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10099
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10161
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10164
+ 1063  191K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10165
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10191
+ 1546  233K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10205
+   62  8416 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10206
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10207
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10211
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10218
+ 1483  171K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10222
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10223
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10224
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10226
+  292 26021 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10228
+  447 55430 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10240
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10241
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10254
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10255
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 10257
+   23  1414 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53 owner UID match 0
+    0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:123 owner UID match 1000
+  929 56520 afwall-reject  all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner UID match 0-999999999
+Chain bw_FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain bw_INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   83  101K            all  --  *      *       0.0.0.0/0            0.0.0.0/0            ! quota globalAlert: 2097152 bytes 
+13074 4358K            all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner socket exists
+Chain bw_OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   62  3502            all  --  *      *       0.0.0.0/0            0.0.0.0/0            ! quota globalAlert: 2097152 bytes 
+18303 2030K            all  --  *      *       0.0.0.0/0            0.0.0.0/0            owner socket exists
+Chain bw_costly_shared (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 bw_penalty_box  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain bw_happy_box (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain bw_penalty_box (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain fw_FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain fw_INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain fw_OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain natctrl_FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+Chain natctrl_tether_counters (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain oem_fwd (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain oem_out (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+Chain st_filter_OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+==================
+Network interfaces
+==================
+
+lo: unknown
+sit0: unknown
+ip6tnl0: unknown
+rmnet_usb0: 3G
+rmnet_usb1: 3G
+rmnet_usb2: 3G
+p2p0: unknown
+wlan0: wifi
+
+========
+ifconfig
+========
+
+ip6tnl0   Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          NOARP  MTU:1452  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:2794 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2794 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:204039 (199.2 KiB)  TX bytes:204039 (199.2 KiB)
+p2p0      Link encap:Ethernet  HWaddr XX:XX:XX:XX:XX:XX  
+          inet6 addr: fe80::xxxx/64 Scope:Link
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+rmnet_usb0 Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          [NO FLAGS]  MTU:2000  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+rmnet_usb1 Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          [NO FLAGS]  MTU:1410  Metric:1
+          RX packets:3843 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4215 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1397057 (1.3 MiB)  TX bytes:528933 (516.5 KiB)
+rmnet_usb2 Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          [NO FLAGS]  MTU:2000  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+sit0      Link encap:IPv6-in-IPv4  
+          NOARP  MTU:1480  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+wlan0     Link encap:Ethernet  HWaddr XX:XX:XX:XX:XX:XX  
+          inet addr:x.x.x.x  Bcast:x.x.x.x  Mask:x.x.x.x
+          inet6 addr: fe80::xxxx/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7488 errors:0 dropped:311 overruns:0 frame:0
+          TX packets:12291 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2822174 (2.6 MiB)  TX bytes:1785938 (1.7 MiB)
+
+===========
+System info
+===========
+
+Android version: 4.4.2
+Manufacturer: samsung
+Model: XXXX
+Build: XXXX
+Active interface: wifi
+Tether status: no
+Roam status: no
+IPv4 subnet: x.x.x.x/24
+IPv6 subnet: fe80::xxxx/64
+/system/bin/su: not present
+/system/xbin/su: 125424 bytes
+/system/app/Superuser.apk: 2371855 bytes
+Superuser: eu.chainfire.supersu v2.02
+
+===========
+Preferences
+===========
+
+activeNotification: false
+activeRules: true
+appVersion: 171
+applyOnSwitchProfiles: false
+bb_path: system
+block_filter_app: -11,10047,10141,10107,10209,10018,10233,1000
+disableIcons: false
+disableTaskerToast: true
+dns_value: auto
+enableAdmin: false
+enableConfirm: false
+enableIPv6: false
+enableLAN: true
+enableLog: true
+enableLogService: true
+enableRoam: false
+enableVPN: true
+fixLeak: false
+ip_path: system
+locale: en
+logTarget: LOG
+notifyAppInstall: true
+patternMax: 3
+showFilter: false
+showUid: true
+storedPosition: 0
+
+======
+Logcat
+======
+
+14:08:18 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:08:18 isWifiApEnabled is false
+14:08:18 Received request to kill logservice
+14:08:18 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:08:18 [libsuperuser] [SU%] START
+14:08:19 logservice shell started
+14:08:21 isWifiApEnabled is false
+14:08:21 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:08:21 isWifiApEnabled is false
+14:08:21 Received request to kill logservice
+14:08:21 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:08:21 [libsuperuser] [SU%] START
+14:08:22 logservice shell started
+14:08:22 isWifiApEnabled is false
+14:08:22 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:08:22 isWifiApEnabled is false
+14:08:22 Received request to kill logservice
+14:08:22 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:08:22 [libsuperuser] [SU%] START
+14:08:23 logservice shell started
+14:11:21 Now assuming NO connection (all interfaces down)
+14:11:21 Received request to kill logservice
+14:11:21 CONNECTIVITY_CHANGE: applied rules
+14:11:22 isWifiApEnabled is false
+14:11:22 Now assuming wifi connection
+14:11:22 IPv4 LAN netmask on wlan0: x.x.1.x/24
+14:11:22 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:11:22 isWifiApEnabled is false
+14:11:22 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:11:22 [libsuperuser] [SU%] START
+14:11:22 logservice shell started
+14:11:22 CONNECTIVITY_CHANGE: applied rules
+14:11:25 isWifiApEnabled is false
+14:11:25 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:11:25 isWifiApEnabled is false
+14:11:25 Received request to kill logservice
+14:11:25 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:11:25 [libsuperuser] [SU%] START
+14:11:25 logservice shell started
+14:11:25 isWifiApEnabled is false
+14:11:25 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:11:25 isWifiApEnabled is false
+14:11:25 Received request to kill logservice
+14:11:25 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:11:25 [libsuperuser] [SU%] START
+14:11:25 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+14:11:25 logservice shell started
+14:12:27 Now assuming NO connection (all interfaces down)
+14:12:27 Received request to kill logservice
+14:12:27 CONNECTIVITY_CHANGE: applied rules
+14:12:28 isWifiApEnabled is false
+14:12:28 Now assuming wifi connection
+14:12:28 IPv4 LAN netmask on wlan0: x.x.1.x/24
+14:12:28 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:12:28 isWifiApEnabled is false
+14:12:28 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:12:28 [libsuperuser] [SU%] START
+14:12:29 logservice shell started
+14:12:29 CONNECTIVITY_CHANGE: applied rules
+14:12:31 isWifiApEnabled is false
+14:12:31 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:12:31 isWifiApEnabled is false
+14:12:31 Received request to kill logservice
+14:12:31 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:12:31 [libsuperuser] [SU%] START
+14:12:32 logservice shell started
+14:12:34 isWifiApEnabled is false
+14:12:34 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:12:34 isWifiApEnabled is false
+14:12:34 Received request to kill logservice
+14:12:34 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:12:34 [libsuperuser] [SU%] START
+14:12:34 logservice shell started
+14:20:37 isWifiApEnabled is false
+14:20:37 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:20:37 isWifiApEnabled is false
+14:20:37 Received request to kill logservice
+14:20:37 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:20:37 [libsuperuser] [SU%] START
+14:20:38 logservice shell started
+14:20:39 isWifiApEnabled is false
+14:20:39 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:20:39 isWifiApEnabled is false
+14:20:39 Received request to kill logservice
+14:20:39 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:20:39 [libsuperuser] [SU%] START
+14:20:39 logservice shell started
+14:20:42 isWifiApEnabled is false
+14:20:42 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:20:42 isWifiApEnabled is false
+14:20:42 Received request to kill logservice
+14:20:42 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:20:42 [libsuperuser] [SU%] START
+14:20:43 logservice shell started
+14:20:43 isWifiApEnabled is false
+14:20:43 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:20:43 isWifiApEnabled is false
+14:20:43 Received request to kill logservice
+14:20:43 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:20:43 [libsuperuser] [SU%] START
+14:20:44 logservice shell started
+14:25:18 isWifiApEnabled is false
+14:25:18 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:25:18 isWifiApEnabled is false
+14:25:18 Received request to kill logservice
+14:25:18 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:25:18 [libsuperuser] [SU%] START
+14:25:19 logservice shell started
+14:25:19 isWifiApEnabled is false
+14:25:19 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:25:19 isWifiApEnabled is false
+14:25:19 Received request to kill logservice
+14:25:19 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:25:19 [libsuperuser] [SU%] START
+14:25:20 logservice shell started
+14:25:24 isWifiApEnabled is false
+14:25:24 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:25:24 isWifiApEnabled is false
+14:25:24 Received request to kill logservice
+14:25:24 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:25:24 [libsuperuser] [SU%] START
+14:25:25 logservice shell started
+14:25:25 isWifiApEnabled is false
+14:25:25 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:25:25 isWifiApEnabled is false
+14:25:25 Received request to kill logservice
+14:25:25 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:25:25 [libsuperuser] [SU%] START
+14:25:26 logservice shell started
+14:28:24 Now assuming NO connection (all interfaces down)
+14:28:24 Received request to kill logservice
+14:28:24 CONNECTIVITY_CHANGE: applied rules
+14:28:25 isWifiApEnabled is false
+14:28:25 Now assuming wifi connection
+14:28:25 IPv4 LAN netmask on wlan0: x.x.1.x/24
+14:28:25 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:28:25 isWifiApEnabled is false
+14:28:25 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:28:25 [libsuperuser] [SU%] START
+14:28:26 logservice shell started
+14:28:26 CONNECTIVITY_CHANGE: applied rules
+14:28:28 isWifiApEnabled is false
+14:28:28 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:28:28 isWifiApEnabled is false
+14:28:28 Received request to kill logservice
+14:28:28 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:28:28 [libsuperuser] [SU%] START
+14:28:29 logservice shell started
+14:28:30 isWifiApEnabled is false
+14:28:30 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:28:30 isWifiApEnabled is false
+14:28:30 Received request to kill logservice
+14:28:30 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:28:30 [libsuperuser] [SU%] START
+14:28:30 logservice shell started
+14:29:31 isWifiApEnabled is false
+14:29:31 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:29:31 isWifiApEnabled is false
+14:29:31 Received request to kill logservice
+14:29:31 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:29:31 [libsuperuser] [SU%] START
+14:29:32 logservice shell started
+14:29:33 isWifiApEnabled is false
+14:29:33 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:29:33 isWifiApEnabled is false
+14:29:33 Received request to kill logservice
+14:29:33 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:29:33 [libsuperuser] [SU%] START
+14:29:34 logservice shell started
+14:29:36 isWifiApEnabled is false
+14:29:36 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:29:36 isWifiApEnabled is false
+14:29:36 Received request to kill logservice
+14:29:36 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:29:36 [libsuperuser] [SU%] START
+14:29:36 logservice shell started
+14:29:37 isWifiApEnabled is false
+14:29:37 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:29:37 isWifiApEnabled is false
+14:29:37 Received request to kill logservice
+14:29:38 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:29:38 [libsuperuser] [SU%] START
+14:29:38 logservice shell started
+14:42:57 Now assuming NO connection (all interfaces down)
+14:42:57 Received request to kill logservice
+14:42:58 CONNECTIVITY_CHANGE: applied rules
+14:43:01 isWifiApEnabled is false
+14:43:01 Now assuming 3G connection (non-tethered)
+14:43:02 isWifiApEnabled is false
+14:43:02 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:43:02 [libsuperuser] [SU%] START
+14:43:02 logservice shell started
+14:43:03 CONNECTIVITY_CHANGE: applied rules
+14:43:13 isWifiApEnabled is false
+14:43:13 Now assuming wifi connection
+14:43:13 IPv4 LAN netmask on wlan0: x.x.39.x/24
+14:43:13 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:43:13 isWifiApEnabled is false
+14:43:13 Received request to kill logservice
+14:43:13 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:43:13 [libsuperuser] [SU%] START
+14:43:14 logservice shell started
+14:43:14 CONNECTIVITY_CHANGE: applied rules
+14:43:15 isWifiApEnabled is false
+14:43:15 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:43:15 isWifiApEnabled is false
+14:43:15 Received request to kill logservice
+14:43:15 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:43:15 [libsuperuser] [SU%] START
+14:43:16 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+14:43:16 isWifiApEnabled is false
+14:43:16 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:43:16 isWifiApEnabled is false
+14:43:17 logservice shell started
+14:43:17 Received request to kill logservice
+14:43:17 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:43:17 [libsuperuser] [SU%] START
+14:43:18 logservice shell started
+14:45:45 Now assuming NO connection (all interfaces down)
+14:45:45 Received request to kill logservice
+14:45:46 CONNECTIVITY_CHANGE: applied rules
+14:45:49 isWifiApEnabled is false
+14:45:50 Now assuming wifi connection
+14:45:50 IPv4 LAN netmask on wlan0: x.x.1.x/24
+14:45:50 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:45:50 isWifiApEnabled is false
+14:45:50 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:45:50 [libsuperuser] [SU%] START
+14:45:51 logservice shell started
+14:45:51 CONNECTIVITY_CHANGE: applied rules
+14:45:52 isWifiApEnabled is false
+14:45:52 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:45:52 isWifiApEnabled is false
+14:45:52 Received request to kill logservice
+14:45:52 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:45:52 [libsuperuser] [SU%] START
+14:45:52 logservice shell started
+14:45:53 isWifiApEnabled is false
+14:45:53 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:45:53 isWifiApEnabled is false
+14:45:53 Received request to kill logservice
+14:45:53 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:45:53 [libsuperuser] [SU%] START
+14:45:54 isWifiApEnabled is false
+14:45:54 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:45:54 isWifiApEnabled is false
+14:45:54 logservice shell started
+14:45:54 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+14:45:54 Received request to kill logservice
+14:45:54 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:45:54 [libsuperuser] [SU%] START
+14:45:55 logservice shell started
+14:48:00 Now assuming NO connection (all interfaces down)
+14:48:00 Received request to kill logservice
+14:48:01 CONNECTIVITY_CHANGE: applied rules
+14:48:05 isWifiApEnabled is false
+14:48:05 Now assuming wifi connection
+14:48:05 IPv4 LAN netmask on wlan0: x.x.39.x/24
+14:48:05 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:48:05 isWifiApEnabled is false
+14:48:05 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:05 [libsuperuser] [SU%] START
+14:48:06 logservice shell started
+14:48:06 CONNECTIVITY_CHANGE: applied rules
+14:48:07 isWifiApEnabled is false
+14:48:07 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:48:07 isWifiApEnabled is false
+14:48:07 Received request to kill logservice
+14:48:07 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:07 [libsuperuser] [SU%] START
+14:48:08 logservice shell started
+14:48:08 isWifiApEnabled is false
+14:48:08 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:48:09 isWifiApEnabled is false
+14:48:09 Received request to kill logservice
+14:48:09 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:09 [libsuperuser] [SU%] START
+14:48:09 logservice shell started
+14:48:10 isWifiApEnabled is false
+14:48:10 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:48:10 isWifiApEnabled is false
+14:48:10 Received request to kill logservice
+14:48:10 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:10 [libsuperuser] [SU%] START
+14:48:11 logservice shell started
+14:48:26 Now assuming NO connection (all interfaces down)
+14:48:26 Received request to kill logservice
+14:48:26 CONNECTIVITY_CHANGE: applied rules
+14:48:32 isWifiApEnabled is false
+14:48:32 Now assuming wifi connection
+14:48:32 IPv4 LAN netmask on wlan0: x.x.1.x/24
+14:48:32 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:48:33 isWifiApEnabled is false
+14:48:33 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:33 [libsuperuser] [SU%] START
+14:48:34 logservice shell started
+14:48:34 CONNECTIVITY_CHANGE: applied rules
+14:48:36 isWifiApEnabled is false
+14:48:36 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:48:36 isWifiApEnabled is false
+14:48:36 Received request to kill logservice
+14:48:36 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:36 [libsuperuser] [SU%] START
+14:48:37 logservice shell started
+14:48:37 isWifiApEnabled is false
+14:48:37 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:48:37 isWifiApEnabled is false
+14:48:38 Received request to kill logservice
+14:48:38 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:48:38 [libsuperuser] [SU%] START
+14:48:38 logservice shell started
+14:51:02 Now assuming NO connection (all interfaces down)
+14:51:02 Received request to kill logservice
+14:51:02 CONNECTIVITY_CHANGE: applied rules
+14:51:06 isWifiApEnabled is false
+14:51:06 Now assuming 3G connection (non-tethered)
+14:51:06 isWifiApEnabled is false
+14:51:06 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:06 [libsuperuser] [SU%] START
+14:51:06 logservice shell started
+14:51:06 CONNECTIVITY_CHANGE: applied rules
+14:51:07 isWifiApEnabled is false
+14:51:07 Now assuming wifi connection
+14:51:07 IPv4 LAN netmask on wlan0: x.x.39.x/24
+14:51:07 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:51:07 isWifiApEnabled is false
+14:51:07 Received request to kill logservice
+14:51:07 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:07 [libsuperuser] [SU%] START
+14:51:08 logservice shell started
+14:51:08 CONNECTIVITY_CHANGE: applied rules
+14:51:08 isWifiApEnabled is false
+14:51:08 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:51:08 isWifiApEnabled is false
+14:51:08 Received request to kill logservice
+14:51:08 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:08 [libsuperuser] [SU%] START
+14:51:08 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+14:51:08 logservice shell started
+14:51:08 isWifiApEnabled is false
+14:51:08 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:51:08 isWifiApEnabled is false
+14:51:09 Received request to kill logservice
+14:51:09 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:09 [libsuperuser] [SU%] START
+14:51:09 logservice shell started
+14:51:23 Now assuming NO connection (all interfaces down)
+14:51:23 Received request to kill logservice
+14:51:23 CONNECTIVITY_CHANGE: applied rules
+14:51:27 isWifiApEnabled is false
+14:51:27 Now assuming 3G connection (non-tethered)
+14:51:27 isWifiApEnabled is false
+14:51:27 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:27 [libsuperuser] [SU%] START
+14:51:28 logservice shell started
+14:51:28 CONNECTIVITY_CHANGE: applied rules
+14:51:36 isWifiApEnabled is false
+14:51:36 Now assuming wifi connection
+14:51:36 IPv4 LAN netmask on wlan0: x.x.80.x/24
+14:51:36 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:51:36 isWifiApEnabled is false
+14:51:36 Received request to kill logservice
+14:51:36 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:36 [libsuperuser] [SU%] START
+14:51:37 logservice shell started
+14:51:37 CONNECTIVITY_CHANGE: applied rules
+14:51:38 isWifiApEnabled is false
+14:51:38 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:51:38 isWifiApEnabled is false
+14:51:38 Received request to kill logservice
+14:51:38 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:38 [libsuperuser] [SU%] START
+14:51:38 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+14:51:38 logservice shell started
+14:51:39 isWifiApEnabled is false
+14:51:39 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:51:39 isWifiApEnabled is false
+14:51:39 Received request to kill logservice
+14:51:39 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:51:39 [libsuperuser] [SU%] START
+14:51:40 logservice shell started
+14:52:52 Now assuming NO connection (all interfaces down)
+14:52:52 Received request to kill logservice
+14:52:53 CONNECTIVITY_CHANGE: applied rules
+14:52:56 isWifiApEnabled is false
+14:52:56 Now assuming wifi connection
+14:52:56 IPv4 LAN netmask on wlan0: x.x.39.x/24
+14:52:56 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+14:52:56 isWifiApEnabled is false
+14:52:57 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:52:57 [libsuperuser] [SU%] START
+14:52:58 logservice shell started
+14:52:58 CONNECTIVITY_CHANGE: applied rules
+14:52:58 isWifiApEnabled is false
+14:52:58 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:52:58 isWifiApEnabled is false
+14:52:58 Received request to kill logservice
+14:52:58 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:52:58 [libsuperuser] [SU%] START
+14:52:59 logservice shell started
+14:53:00 isWifiApEnabled is false
+14:53:00 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:53:00 isWifiApEnabled is false
+14:53:00 Received request to kill logservice
+14:53:00 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:53:00 [libsuperuser] [SU%] START
+14:53:00 logservice shell started
+14:53:01 isWifiApEnabled is false
+14:53:01 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+14:53:01 isWifiApEnabled is false
+14:53:01 Received request to kill logservice
+14:53:01 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:53:01 [libsuperuser] [SU%] START
+14:53:02 logservice shell started
+14:55:02 Now assuming NO connection (all interfaces down)
+14:55:02 Received request to kill logservice
+14:55:03 CONNECTIVITY_CHANGE: applied rules
+14:55:06 isWifiApEnabled is false
+14:55:06 Now assuming 3G connection (non-tethered)
+14:55:06 isWifiApEnabled is false
+14:55:06 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+14:55:06 [libsuperuser] [SU%] START
+14:55:07 logservice shell started
+14:55:07 CONNECTIVITY_CHANGE: applied rules
+17:24:11 isWifiApEnabled is false
+17:24:11 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:24:11 isWifiApEnabled is false
+17:24:11 Received request to kill logservice
+17:24:11 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:24:11 [libsuperuser] [SU%] START
+17:24:12 logservice shell started
+17:24:12 isWifiApEnabled is false
+17:24:12 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:24:12 isWifiApEnabled is false
+17:24:12 Received request to kill logservice
+17:24:12 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:24:12 [libsuperuser] [SU%] START
+17:24:13 logservice shell started
+17:26:51 isWifiApEnabled is false
+17:26:52 Now assuming wifi connection
+17:26:52 IPv4 LAN netmask on wlan0: x.x.10.x/24
+17:26:52 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+17:26:52 isWifiApEnabled is false
+17:26:52 Received request to kill logservice
+17:26:52 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:26:52 [libsuperuser] [SU%] START
+17:26:52 logservice shell started
+17:26:53 CONNECTIVITY_CHANGE: applied rules
+17:26:53 isWifiApEnabled is false
+17:26:53 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:26:53 isWifiApEnabled is false
+17:26:53 Received request to kill logservice
+17:26:53 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:26:53 [libsuperuser] [SU%] START
+17:26:54 isWifiApEnabled is false
+17:26:54 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:26:54 isWifiApEnabled is false
+17:26:54 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+17:26:54 logservice shell started
+17:26:54 Received request to kill logservice
+17:26:54 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:26:54 [libsuperuser] [SU%] START
+17:26:55 logservice shell started
+17:28:28 Now assuming NO connection (all interfaces down)
+17:28:28 Received request to kill logservice
+17:28:29 CONNECTIVITY_CHANGE: applied rules
+17:28:32 isWifiApEnabled is false
+17:28:32 Now assuming 3G connection (non-tethered)
+17:28:32 isWifiApEnabled is false
+17:28:32 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:28:32 [libsuperuser] [SU%] START
+17:28:33 logservice shell started
+17:28:33 CONNECTIVITY_CHANGE: applied rules
+17:29:03 isWifiApEnabled is false
+17:29:03 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:29:03 isWifiApEnabled is false
+17:29:03 Received request to kill logservice
+17:29:04 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:29:04 [libsuperuser] [SU%] START
+17:29:05 isWifiApEnabled is false
+17:29:05 Now assuming wifi connection
+17:29:05 IPv4 LAN netmask on wlan0: x.x.12.x/24
+17:29:05 IPv6 LAN netmask on wlan0: fe80::xxxx/64
+17:29:05 isWifiApEnabled is false
+17:29:05 logservice shell started
+17:29:05 Received request to kill logservice
+17:29:05 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:29:05 [libsuperuser] [SU%] START
+17:29:06 logservice shell started
+17:29:06 CONNECTIVITY_CHANGE: applied rules
+17:29:06 isWifiApEnabled is false
+17:29:06 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:29:06 isWifiApEnabled is false
+17:29:07 Received request to kill logservice
+17:29:07 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:29:07 [libsuperuser] [SU%] START
+17:29:07 logservice shell started
+17:29:12 isWifiApEnabled is false
+17:29:12 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:29:12 isWifiApEnabled is false
+17:29:12 Received request to kill logservice
+17:29:12 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:29:12 [libsuperuser] [SU%] START
+17:29:13 command 'busybox  pkill klogripper' exited with status 1
+Output:
+
+17:29:13 logservice shell started
+17:29:13 isWifiApEnabled is false
+17:29:13 CONNECTIVITY_CHANGE: interface state has not changed, ignoring
+17:29:13 isWifiApEnabled is false
+17:29:13 Received request to kill logservice
+17:29:13 Starting /data/data/dev.ukanth.ufirewall/app_bin/klogripper 
+17:29:13 [libsuperuser] [SU%] START
+17:29:14 logservice shell started
